@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require('express');
-var app = express();
-app.get('/', function (req, res) {
-    res.status(200).json({ value: 'Express + TypeScript Server' });
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+    res.status(200).json({ value: 'Welcome to My API' });
 });
-app.listen(5000, function () {
+app.listen(5000, () => {
     console.log("Its work");
 });
 function sayMyWord(word) {
@@ -13,4 +13,4 @@ function sayMyWord(word) {
     return word;
 }
 sayMyWord("hello");
-module.exports = { sayMyWord: sayMyWord, app: app };
+module.exports = { sayMyWord, app };
