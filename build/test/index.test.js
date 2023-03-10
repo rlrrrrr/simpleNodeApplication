@@ -1,22 +1,14 @@
-const { describe } = require("node:test");
-const request = require('supertest');
-const {app,sayMyWord} = require("../index");
+const request = require("supertest");
+const {app,server}  = require("../index");
 
-test('shouldSayMyWord', function () {
-    expect(sayMyWord("test")).toBe("test");
+
+describe('GET "/"', () => {
+    it("should return code status 200", async () => {
+        const response = await request(server).get('/');
+        expect(response.status).toBe(200);
+        expect(response.body.value).toBe('Welcome to My API');
+    });
+    afterAll(()=>{
+        server.close();
+    })
 });
-
-
-describe('API status' , () =>{
-    test('should return name',async ()=>{
-        const response = await request(app).get('/');
-        expect(response.statusCode).toBe(200);
-    })
-})
-
-describe('API response',()=>{
-    test('should return a json response',async () =>{
-        const response = await request(app).get('/');
-        expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
-    })
-})
