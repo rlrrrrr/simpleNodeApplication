@@ -6,7 +6,7 @@
   "scripts": {
     "tsToJs": "npx tsc",
     "build": "node ./build/index.js",
-    "serve": "nodemon ./build/index.js",
+    "start": "nodemon ./build/index.js",
     "test": "jest --detectOpenHandles"
   },
   "repository": {
