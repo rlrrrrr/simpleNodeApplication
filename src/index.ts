@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import {exit} from 'node:process';
 
 const express = require('express');
 
@@ -12,8 +13,7 @@ app.get('/', (req:Request, res:Response) => {
 });
 
 
-app.listen(5000,()=>{
-    console.log("Its work");
+const server = app.listen(5000,()=>{
 })
 
 function sayMyWord(word: string):string{
@@ -21,9 +21,16 @@ function sayMyWord(word: string):string{
     return word;
 }
 
+function shutdown(){
+    console.log("fermeture de la connexion");
+    server.close(()=>{
+        exit(1);
+    })
+}
+
 sayMyWord("hello");
 
-module.exports = {sayMyWord,app};
+module.exports = {sayMyWord,server,app};
 
 
 
