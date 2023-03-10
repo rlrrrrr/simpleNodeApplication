@@ -1,22 +1,12 @@
 FROM node:18.14.2
 
-
 WORKDIR /app
 
-RUN npm install -g npm@latest
-
 COPY tsconfig.json package*.json ./
-
 
 RUN npm install
 
 COPY . .
-
-ENV HOST="app_db"
-
-
-RUN npx prisma generate
-
 EXPOSE 5000
-
+CMD ["npm","run","tsToJs"]
 CMD ["npm","start"]
